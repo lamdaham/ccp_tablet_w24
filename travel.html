@@ -5,6 +5,51 @@
     <meta charset="UTF-8">
     <title>Travel</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Add the new carousel CSS */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+            display: none; /* Hide all items by default */
+        }
+
+        .carousel-item img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .carousel-arrow.left {
+            left: 10px;
+        }
+
+        .carousel-arrow.right {
+            right: 10px;
+        }
+
+        /* Initially show the first item */
+        .carousel-item:first-child {
+            display: block;
+        }
+    </style>
    
 </head>
 <body>
@@ -58,33 +103,49 @@
             <script>
                 let currentSlide = 0;
                 const slides = document.querySelectorAll('.carousel-item');
-        
+                const totalSlides = slides.length;
+            
+                // Function to show a specific slide
                 function showSlide(index) {
-                    // Check if index is in bounds
-                    if (index >= 0 && index < slides.length) {
-                        // Hide all slides
-                        slides.forEach(slide => {
-                            slide.style.display = 'none';
-                        });
-                        // Show the desired slide
-                        slides[index].style.display = 'flex';
+                    // First, hide all slides
+                    slides.forEach(slide => {
+                        slide.style.display = 'none';
+                    });
+            
+                    // Then, show the targeted slide
+                    slides[index].style.display = 'block';
+                }
+            
+                // Function to move to the next or previous slide
+                function moveSlide(step) {
+                    currentSlide += step;
+            
+                    // If we've gone past the last slide, wrap around to the first slide
+                    if (currentSlide >= totalSlides) {
+                        currentSlide = 0;
                     }
-                }
-        
-                function nextSlide() {
-                    currentSlide = (currentSlide + 1) % slides.length;
+            
+                    // If we've gone before the first slide, wrap around to the last slide
+                    if (currentSlide < 0) {
+                        currentSlide = totalSlides - 1;
+                    }
+            
+                    // Now show the new slide
                     showSlide(currentSlide);
                 }
-        
-                function previousSlide() {
-                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                    showSlide(currentSlide);
-                }
-        
-                // Initialize the carousel by showing the first slide
+            
+                // Event listeners for previous/next buttons
+                document.querySelector('.carousel-arrow.left').onclick = function() {
+                    moveSlide(-1);
+                };
+                document.querySelector('.carousel-arrow.right').onclick = function() {
+                    moveSlide(1);
+                };
+            
+                // Initially show the first slide
                 showSlide(currentSlide);
-        
             </script>
+            
             
         </section>
 
