@@ -1,0 +1,243 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Lighter background for overall page */
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF; /* Blue color for links */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #333; /* Darker background for contrast */
+    text-align: center;
+    overflow: hidden;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    display: block;
+    padding: 14px 16px;
+    color: white;
+    font-size: 18px; /* Adjusted for mobile friendliness */
+}
+
+nav ul li a.active, nav ul li a:hover {
+    background-color: #117A65; /* Highlight color for active/hover state */
+    color: white;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: #000;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+    background-color: #117A65; /* Make skip link clearly visible when focused */
+}
+
+/* Grid Layout */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #e9ecef; /* Light grey background for photo gallery */
+    border-radius: 8px; /* Optional: adds rounded corners to the photo gallery */
+}
+
+.photo-gallery img {
+    width: 100%;
+    height: 200px; /* Ensure uniform image height */
+    object-fit: cover;
+    border-radius: 10px; /* Rounded corners for images */
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    max-height: 600px; /* Limiting height for large images */
+}
+
+/* Enhancements for Readability and Spacing */
+main {
+    background-color: #ffffff; /* White background for main content area */
+    padding: 20px; /* Spacing around main content */
+    border-radius: 8px; /* Optional: adds rounded corners to the main content area */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
+    margin: 20px; /* Adds margin around the main content for separation from the edges */
+}
+
+section {
+    background-color: #f8f9fa; /* Slightly off-white for sections within main */
+    padding: 20px; /* Padding within sections for spacing */
+    margin-bottom: 20px; /* Separation between sections */
+    border-radius: 8px; /* Rounded corners for sections */
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    nav ul li {
+        display: block; /* Stack navigation items on smaller screens */
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    }
+
+    h1, h2 {
+        font-size: 1.5em; /* Adjusting heading sizes for readability */
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.photo-gallery-pets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Creates a responsive grid */
+    gap: 20px; /* Space between images */
+    padding: 20px; /* Padding around the entire gallery */
+}
+
+.photo-gallery-pets img {
+    width: 100%; /* Makes images stretch to fill their grid area */
+    height: auto; /* Maintains the aspect ratio of the images */
+    object-fit: cover; /* Ensures the images cover their area without distorting */
+}
+
+
+@media (min-width: 768px) {
+    /* Style adjustments for tablet view */
+
+    .carousel-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; /* Enables snap scrolling */
+    }
+
+    .carousel-item {
+        flex: 0 0 100%; /* Each item takes full width of the container */
+        scroll-snap-align: start; /* Snaps to the start of the container */
+        width: 100%;
+        transition: transform 0.5s ease;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        pointer-events: none;
+    }
+
+
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        border-radius: 50%;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+
+    .carousel-arrow.left {
+        left: 10px;
+    }
+
+    .carousel-arrow.right {
+        right: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    /* This targets tablets in portrait and landscape orientation. */
+
+    .skip-link {
+        /* Ensure the skip link is easily tappable */
+        padding: 15px;
+        font-size: 1.5em;
+    }
+
+    header nav ul {
+        /* Adjust the navigation to be more tablet-friendly */
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    header nav ul li a {
+        /* Increase the size of navigation links */
+        padding: 15px 25px;
+        font-size: 1.2em;
+    }
+
+    .photo-gallery div,
+    .photo-gallery-pets div {
+        /* Adjust the photo gallery to display images in a row */
+        display: inline-block;
+        width: calc(50% - 10px); /* Show two images per row */
+        margin: 5px;
+    }
+
+    .photo-gallery div img,
+    .photo-gallery-pets div img {
+        /* Adjust image size within the gallery */
+        width: 100%;
+        height: auto;
+    }
+
+    .responsive-image {
+        /* Ensure images resize responsively */
+        max-width: 100%;
+        height: auto;
+    }
+
+    main section h2 {
+        /* Increase heading sizes for better readability */
+        font-size: 2.5em;
+    }
+
+    main section p,
+    main section li {
+        /* Increase text size for better readability */
+        font-size: 1.2em;
+    }
+
+
+}
