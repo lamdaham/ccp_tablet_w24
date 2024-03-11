@@ -189,10 +189,20 @@ section {
     /* This targets tablets in portrait and landscape orientation. */
 
     .skip-link {
-        /* Ensure the skip link is easily tappable */
-        padding: 15px;
-        font-size: 1.5em;
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: white;
+        padding: 8px 16px;
+        z-index: 100;
+        transition: top 0.3s;
     }
+    
+    .skip-link:focus {
+        top: 10px; /* Adjust as needed */
+    }
+    
 
     header nav ul {
         /* Adjust the navigation to be more tablet-friendly */
